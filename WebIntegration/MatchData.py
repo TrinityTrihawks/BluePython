@@ -13,7 +13,7 @@ URL = "http://www.thebluealliance.com/api/v2/"
 HEADER_KEY = "X-TBA-App-Id"
 HEADER_VAL = 'frc4215:data-analysis:.1'
 
-
+#I was thinking that we should turn this into a class so that we can have an instance for each regional
 def api_is_up():
     conn = http.client.HTTPConnection(URL,80)
     conn.request('GET',"/status",{HEADER_KEY : HEADER_VAL})
