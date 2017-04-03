@@ -1,1 +1,1 @@
-pip install scipy
+pip3 install scipy tbapy
