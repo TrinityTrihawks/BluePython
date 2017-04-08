@@ -35,7 +35,7 @@ def get_event_teams(event_key):
     #    teams.append(team["key"])
     #return teams
 
-def main():
+def statIowa():
     '''
         This function is to be performed when directly run by python, otherwise it won't be performed.
     '''
@@ -108,11 +108,32 @@ def main():
     var = data - np.ones((54,54)).dot(data)
     print(var.transpose().dot(var))
 
-#teams = get_event_teams('2010sc')
-#print(teams)
+def sortOPRS():
+    reg_key = '2017mnmi2'
+    # gathering data
+    team_groups = get_event_teams(reg_key)
+    opr_unsorted = tba.event_stats(reg_key)["oprs"]
+    opr_teams = []
+    for team in team_groups:
+        opr_teams.append(opr_unsorted[team[3:len(team)]])
+    opr_teams = np.array(opr_teams)
 
-#up = api_is_up()
-#print(up)
 
+def sortCCWMS():
+    reg_key = '2017mnmi2'
+    # gathering data
+    team_groups = get_event_teams(reg_key)
+    ccwms_unsorted = tba.event_stats(reg_key)["ccwms"]
+    ccwms_teams = []
+    for team in team_groups:
+        ccwms_teams.append(ccwms_unsorted[team[3:len(team)]])
+
+    mean = np.mean(ccwms_teams)
+    ccwms_teams = numpy.array(ccwms_unsorted)
+    std = np.std(ccwms_teams)
+    for score in ccwms_teams
+        
+def main():
+    sortCCWMS()
 # To call main function
 if '__main__' == __name__: main()
