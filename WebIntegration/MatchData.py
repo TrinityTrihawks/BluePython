@@ -108,8 +108,7 @@ def statIowa():
     var = data - np.ones((54,54)).dot(data)
     print(var.transpose().dot(var))
 
-def sortOPRS():
-    reg_key = '2017mnmi2'
+def getOPRS(reg_key):
     # gathering data
     team_groups = get_event_teams(reg_key)
     opr_unsorted = tba.event_stats(reg_key)["oprs"]
@@ -119,21 +118,17 @@ def sortOPRS():
     opr_teams = np.array(opr_teams)
 
 
-def sortCCWMS():
-    reg_key = '2017mnmi2'
+def getCCWMS(reg_key):
     # gathering data
     team_groups = get_event_teams(reg_key)
     ccwms_unsorted = tba.event_stats(reg_key)["ccwms"]
     ccwms_teams = []
     for team in team_groups:
         ccwms_teams.append(ccwms_unsorted[team[3:len(team)]])
+    ccwms_teams = np.array(ccwms_teams)
+    return ccwms_teams
 
-    mean = np.mean(ccwms_teams)
-    ccwms_teams = numpy.array(ccwms_unsorted)
-    std = np.std(ccwms_teams)
-    for score in ccwms_teams
-        
 def main():
-    sortCCWMS()
+    sortCCWMS()S
 # To call main function
 if '__main__' == __name__: main()
