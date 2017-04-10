@@ -116,6 +116,7 @@ def getOPRS(reg_key):
     for team in team_groups:
         opr_teams.append(opr_unsorted[team[3:len(team)]])
     opr_teams = np.array(opr_teams)
+    return opr_teams
 
 
 def getCCWMS(reg_key):
@@ -128,7 +129,38 @@ def getCCWMS(reg_key):
     ccwms_teams = np.array(ccwms_teams)
     return ccwms_teams
 
+def getStat(reg_key,stat):
+    team_groups = get_event_teams(reg_key)
+    event_matches = tba.event_matches(reg_key)
+    match_num = 0
+    for e_match in event_matches:
+        if e_match['comp_level'] == 'qm':
+            match_num = match_num + 1
+
+    stat_matrix = []
+    stat_scores = [0] * match_num
+
+    for team in team_groups:
+        matches = tba.team_matches(team,reg_key)
+        stat_col = [0] * match_num
+        for match in matches:
+            if match['comp_level'] == 'qm':
+                alliance = 'blue'
+
+                for member in match['alliances']['red']['teams']:
+                    if team == member:
+                        alliance = 'red'
+
+                stat_col[match['match_number']-1] = 1
+                stat_scores[match['match_number']-1] = match['score_breakdown'][alliance][stat]
+        stat_matrix.append(stat_col)
+
+    stat_scores = np.array([stat_scores]).transpose()
+    stat_matrix = np.array(stat_matrix).transpose()
+    stats = linalg.lstsq(stat_matrix,stat_scores)[0]
+    return stats
+
 def main():
-    sortCCWMS()S
+    print(getOPRS("2017mnmi2"))
 # To call main function
 if '__main__' == __name__: main()
