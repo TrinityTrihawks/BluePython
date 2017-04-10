@@ -115,7 +115,7 @@ def getOPRS(reg_key):
     opr_teams = []
     for team in team_groups:
         opr_teams.append(opr_unsorted[team[3:len(team)]])
-    opr_teams = np.array(opr_teams)
+    opr_teams = np.array([opr_teams]).transpose()
     return opr_teams
 
 
@@ -126,7 +126,7 @@ def getCCWMS(reg_key):
     ccwms_teams = []
     for team in team_groups:
         ccwms_teams.append(ccwms_unsorted[team[3:len(team)]])
-    ccwms_teams = np.array(ccwms_teams)
+    ccwms_teams = np.array([ccwms_teams]).transpose()
     return ccwms_teams
 
 def getStat(reg_key,stat):
