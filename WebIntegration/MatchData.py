@@ -60,6 +60,6 @@ def getStat(reg_key,stat):
     return stats
 
 def main():
-    print(getStat("2017mnmi2","totalPoints")
+    print(getStat("2017mnmi2","totalPoints"))
 # To call main function
 if '__main__' == __name__: main()
