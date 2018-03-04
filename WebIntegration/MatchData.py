@@ -16,8 +16,9 @@ import numpy.linalg as linalg
 
 URL = "http://www.thebluealliance.com/api/v2/"
 HEADER_KEY = "X-TBA-App-Id"
-HEADER_VAL = 'frc4215:data-analysis:.1'
-tba = tbapy.TBA(HEADER_VAL)
+AUTH_KEY = 'NJielZLWMugOBVVlzs9vgQaK9kgbDGZYLyLaAQPy1SrC1eOR3hkNS6MnIybonTCg'
+tba = tbapy.TBA(AUTH_KEY)
+simple = True
 #I was thinking that we should turn this into a class so that we can have an instance for each regional
 def api_is_up(): # Error when calling. Needs to be fixed if this is useful.
     conn = http.client.HTTPConnection(URL,80)
@@ -27,9 +28,11 @@ def api_is_up(): # Error when calling. Needs to be fixed if this is useful.
 
 def get_event_teams(event_key):
 
-    jsonified = tba.event_teams(event_key)
+    jsonified = tba.event_teams(event_key,simple,simple)
+    #print(jsonified)
     # The next line is a condense version of line 31-34
-    return [team['key'] for team in jsonified]
+    #return [team.team_number for team in jsonified]
+    return jsonified
     #teams = []
     #for team in jsonified:
     #    teams.append(team["key"])
@@ -147,7 +150,7 @@ def getStat(reg_key,stat):
             if match['comp_level'] == 'qm':
                 alliance = 'blue'
 
-                for member in match['alliances']['red']['teams']:
+                for member in match['alliances']['red']['team_keys']:
                     if team == member:
                         alliance = 'red'
 

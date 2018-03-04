@@ -23,7 +23,6 @@ def test():
     ccwms = standardize_var(MD.getCCWMS(reg_key))
     opr = standardize_var(MD.getOPRS(reg_key))
     data = np.hstack((ccwms,opr)).transpose()
-    print(data.shape)
     cor = np.corrcoef(data)
     print(cor)
     t = np.arange(min(opr),max(opr),.2)
