@@ -17,10 +17,11 @@ Tests two collections for
 correlation and egression also supplies a scatter
 """
 def cor_test_plot(data1,data2):
+    #Rearreanges the (n,1),(n,1) data sets into a (2,n) matrix
     data = np.hstack((data1,data2)).transpose()
     cor = np.corrcoef(data)
 
-    #
+    #polyfit takes vectors so we need to flatten
     reg = np.polyfit(data1.flatten(),data2.flatten(),1)
 
     print("Correlation:" + str(cor[1,0]))
@@ -32,10 +33,13 @@ def cor_test_plot(data1,data2):
     plt.show()
 
 def main():
-    reg_key = '2018ndgf'
-    opr = MD.getStat(reg_key,'totalPoints')
-    ccwms = MD.getStat(reg_key,'autoPoints')
-    cor_test_plot(opr,ccwms)
+    keys = ['2018ndgf','2018qcmo']
+    opr = np.array([[1]])
+    auto = np.array([[1]])
+    for reg_key in keys:
+        opr = np.concatenate((opr,MD.getStat(reg_key,'totalPoints')))
+        auto = np.concatenate((auto,MD.getStat(reg_key,'autoPoints')))
+    cor_test_plot(opr,auto)
 
 # To call main function
 if '__main__' == __name__: main()
