@@ -34,8 +34,11 @@ def cor_test_plot(data1,data2):
 
 def main():
     keys = ['2018ndgf','2018qcmo']
+    # Intializing data
     opr = np.array([[1]])
     auto = np.array([[1]])
+
+    #Collecting the data
     for reg_key in keys:
         opr = np.concatenate((opr,MD.getStat(reg_key,'totalPoints')))
         auto = np.concatenate((auto,MD.getStat(reg_key,'autoPoints')))
