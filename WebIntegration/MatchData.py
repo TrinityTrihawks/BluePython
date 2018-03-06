@@ -11,8 +11,8 @@ import tbapy
 import numpy as np
 import numpy.linalg as linalg
 
-#the key which alows this to work, currently un my(Waweru's) account might want to change
-AUTH_KEY = 'NJielZLWMugOBVVlzs9vgQaK9kgbDGZYLyLaAQPy1SrC1eOR3hkNS6MnIybonTCg'
+#the key which allows this to work, currently my(Ransom's) account
+AUTH_KEY = 'Y7oKuR74PS2Nk2Z3eHfMGcLCoQBHYbHdOX3DncU7Pw2HhEnjA0VaR0PyJyUNmFFd'
 tba = tbapy.TBA(AUTH_KEY)
 simple = True
 
@@ -34,7 +34,7 @@ def getStat(reg_key,stat):
         if e_match['comp_level'] == 'qm':
             match_num = match_num + 1
 
-    #Set up the probelm to be solved as finding a for stat_matrix*a = stat_scores
+    #Set up the problem to be solved as finding a for stat_matrix*a = stat_scores
     stat_matrix = []
     stat_scores = [0] * match_num
 
